@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {{ sede.nombre }}
+{% endblock %}
+{% block body %}
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Nombre: {{ sede.nombre }}</li>
+    <li class="list-group-item">Localización: {{ sede.localizacion }}</li>
+    <li class="list-group-item">Proyectos llevados a cabo en dicha sede: </li>
+</ul>
+    <br><br>
+    <table>
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+        {% for a in proyectos %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ a.nombre }}</td>
+                <td>{{ a.descripcion }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

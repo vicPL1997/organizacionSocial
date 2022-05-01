@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {{ proyecto.nombre }}
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <h1 style="transform: translateX(30%); margin-top: 1%; margin-bottom: 5%;">Proyecto "{{ proyecto.nombre }}"</h1>
+    <p style="font-size: 20px; margin-left: 2%;">Aquí podrá ver toda la información relacionada sobre el proyecto en el que usted está participando</p>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Nombre: {{ proyecto.nombre }}</li>
+    <li class="list-group-item">Descripción: {{ proyecto.descripcion }}</li>
+    <li class="list-group-item">Lugar del proyecto: {{ proyecto.sede.localizacion }}</li>
+</ul>
+{% endblock %}

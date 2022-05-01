@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - DashboardAdministradorSedes
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <p>Bienvenido a la vista de administrador de sedes, a continuación podrá ver todas nuestras sedes, además también podrá ver la sede de la cual es administrador, lo que le
+    permitirá lanzar un nuevo proyecto en dicha sede, modificar algún proyecto o eliminar algún proyecto, así como ver los usuarios participantes y voluntarios de dicho proyecto.</p>
+{% for s in sede %}
+
+    <h3>Mi Sede - {{ s.nombre }}</h3>
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th>Nombre de la sede</th>
+                <th>Ubicación de la sede</th>
+            </tr>
+            <tr>
+                <td>{{ s.nombre }}</td>
+                <td>{{ s.localizacion}}</td>
+            </tr>
+        </table>
+    </div>
+{% endfor %}
+    <h3>--------------------------------------------------------------------------------------------------------------------</h3>
+    <h3>Mi Sede - {{ sede2.nombre }}</h3>
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th>Nombre de la sede</th>
+                <th>Ubicación de la sede</th>
+            </tr>
+            <tr>
+                <td>{{ sede2.nombre }}</td>
+                <td>{{ sede2.localizacion}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

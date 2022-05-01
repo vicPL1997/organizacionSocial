@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Dashboard
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="ml-3 mt-2 mr-3">
+        <h1>Panel de administración</h1>
+        <p>Bienvenido al panel de administración, esta vista solo estará disponible para el usuario administrador de la organización, y en el podrá ver información de las sedes, así como añadir una nueva sede, también verá todos los proyecto de la organización y los usuarios</p>
+        <h3>Sedes</h3>
+        <table class="table table-bordered">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>ID</th>
+                <th>Nombre de la sede</th>
+                <th>Ubicacíon de la sede</th>
+            </tr>
+
+            {# table body #}
+            {% for article in sedes %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.nombre }}</td>
+                    <td>{{ article.localizacion}}</td>
+                    <td ><button onclick="window.location.href='{{ path('verSede',{id:article.id}) }}'"> Ver Sede</button>  </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+        <button onclick="window.location.href='{{ path('app_sedes') }}'"> Añadir una nueva sede</button>
+        <br><br>
+        <h3>Usuarios del sistema</h3>
+
+        <table class="table table-bordered">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>ID Usuario</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>Proyecto asociado</th>
+            </tr>
+
+            {# table body #}
+            {% for a in usuarios %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.username }}</td>
+                    <td>{{ a.edad }}</td>
+                    <td>{{ a.sexo}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <h3>Todos los proyectos</h3>
+        <table class="table table-bordered">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>ID Proyecto</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+
+                <th>Sede a la que pertenece</th>
+            </tr>
+
+            {# table body #}
+            {% for ac in proyectos %}
+            <td>{{ ac.id }}</td>
+            <td>{{ ac.nombre }}</td>
+            <td>{{ ac.descripcion}}</td>
+            <td>{{ ac.sede.localizacion}}</td>
+            <td ><button onclick="window.location.href='{{ path('verProyecto',{id:ac.id}) }}'"> Ver proyecto</button>  </td>
+            </tr>
+        </table>
+        {% endfor %}
+        <br><br>
+    </div>
+
+{% endblock %}

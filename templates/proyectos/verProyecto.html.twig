@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {{ proyecto.nombre }}
+{% endblock %}
+{% block body %}
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Nombre: {{ proyecto.nombre }}</li>
+        <li class="list-group-item">Descripción: {{ proyecto.descripcion }}</li>
+        <li class="list-group-item">Lugar del proyecto: {{ proyecto.sede.localizacion }}</li>
+        <li class="list-group-item">Usuarios del proyecto: </li>
+    </ul>
+<br><br>
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+        <th>ID Usuario</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Sexo</th>
+        <th>Proyecto asociado</th>
+    </tr>
+    {% if is_granted('ROLE_ADMIN') %}
+        {% for a in usuarios %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ a.id }}</td>
+                <td>{{ a.username }}</td>
+                <td>{{ a.edad }}</td>
+                <td>{{ a.sexo}}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+</table>
+{% endblock %}

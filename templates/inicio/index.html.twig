@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Inicio
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="row h-100 col-12 mt-5">
+        <div class="col-6">
+            <p>{{ texto_izquierda }} </p>
+            <p>Aquí iria información relativa a la organización, entiendo que los tipos de proectos que dispone y de sus sedes.</p>
+        </div>
+        <div class="col-6 h-100">
+            <a>Aquí iria una imagen</a>
+            <div class="h-50 mt-3">
+                <img src="{{ asset('portada.jpg') }}" style="width: 60%;">
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
